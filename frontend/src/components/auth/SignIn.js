@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import oc from 'open-color';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faTwitter, faGoogle } from "@fortawesome/free-brands-svg-icons"
+import axios from 'axios';
 
 
 const SignInCard = styled.div`
@@ -164,14 +164,46 @@ const H3 = styled.h3`
 
 class SignIn extends React.Component {
 
+    state = {
+        email: '',
+        password: ''
+    }
+
+    onChange = (e) => {
+        const { name, value } = e.target; 
+        this.setState({
+            [name]: value
+        });
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post(
+            'http://localhost:4000/api/auth/signin',
+            {
+                email: this.state.email,
+                password: this.state.password
+            }
+        )
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((result) => {
+            console.log(result);
+        });
+    }
+
     render(){
+        const { email, password } = this.state;
+
         return(
             <SignInCard>
                 <FormWrapper>
                     <H1>로그인</H1>
                     <SignInForm>
-                        <StyledInput type="text" name="email" placeholder="Email"/>
-                        <StyledInput type="password" name="password" placeholder="Password"/>
+                        <StyledInput type="text" name="email" placeholder="Email" value={email} onChange={this.onChange} />
+                        <StyledInput type="password" name="password" placeholder="Password" value={password} onChange={this.onChange} />
                         <StyledButton>로그인</StyledButton>
                     </SignInForm>
                     <ToSignUp to='/auth/signup'>회원이 아니신가요?가입하기</ToSignUp>
