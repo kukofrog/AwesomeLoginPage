@@ -201,7 +201,7 @@ class SignIn extends React.Component {
             <SignInCard>
                 <FormWrapper>
                     <H1>로그인</H1>
-                    <SignInForm>
+                    <SignInForm onSubmit={this.onSubmit}>
                         <StyledInput type="text" name="email" placeholder="Email" value={email} onChange={this.onChange} />
                         <StyledInput type="password" name="password" placeholder="Password" value={password} onChange={this.onChange} />
                         <StyledButton>로그인</StyledButton>
