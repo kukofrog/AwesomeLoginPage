@@ -2,7 +2,7 @@
 ## 개요
 웹프로그래밍 시간에 선생님이 시켜서? 찡긋
 </br>
-![manhara](https://stickershop.line-scdn.net/stickershop/v1/product/5428032/LINEStorePC/main.png;compress=true)
+![manhara1](https://stickershop.line-scdn.net/stickershop/v1/product/5428032/LINEStorePC/main.png;compress=true)
 ## 역할
 ### 전형탁
 **FE** 담당
