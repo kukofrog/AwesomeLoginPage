@@ -4,13 +4,11 @@ import styled, { createGlobalStyle } from 'styled-components';
 import oc from 'open-color';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faTwitter, faGoogle } from "@fortawesome/free-brands-svg-icons"
-
+import axios from 'axios';
 
 const SignUpCard = styled.div`
     background-color: white;
     margin: auto;
-    margin-top: 4rem;
     width: 650px;
     z-index: 2;
     @media (max-width: 650px){
@@ -169,27 +167,84 @@ const H3 = styled.h3`
 `
 
 class SignUp extends React.Component {
+
+    state = {
+        email: '',
+        password: '',
+        name: '',
+        age: ''
+    }
+
+    onChange = (e) => {
+        const { name, value } = e.target; 
+        this.setState({
+            [name]: value
+        });
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post(
+            'http://localhost:4000/api/auth/signup',
+            {
+                email: this.state.email,
+                password: this.state.password,
+                name: this.state.name,
+                age: this.state.age
+            }
+        )
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((result) => {
+            console.log(result);
+        });
+    }
+
     render(){
+        const { email, password, name, age } = this.state;
+
         return(
             <SignUpCard>
                 <FormWrapper>
                     <H1>회원가입</H1>
-                    <SignUpForm>
+                    <SignUpForm onSubmit={this.onSubmit}>
                         <LabelWrapper>
                             <Label>Email</Label>
-                            <StyledInput type="text" name="email" placeholder="Email"/>
-                        </LabelWrapper>
-                        <LabelWrapper>
-                            <Label>닉네임</Label>
-                            <StyledInput type="text" name="username" placeholder="Username"/>
+                            <StyledInput type="text" name="email" placeholder="Email" value={email} onChange={this.onChange}/>
                         </LabelWrapper>
                         <LabelWrapper>
                             <Label>비밀번호</Label>
-                            <StyledInput type="password" name="password" placeholder="Password"/>
+                            <StyledInput type="password" name="password" placeholder="Password" value={password} onChange={this.onChange}/>
                         </LabelWrapper>
                         <LabelWrapper>
-                            <Label>비밀번호 확인</Label>
-                            <StyledInput type="password" name="passwordcheck" placeholder="Password Check"/>
+                            <Label>이름</Label>
+                            <StyledInput type="text" name="name" placeholder="Name" value={name} onChange={this.onChange}/>
+                        </LabelWrapper>
+                        <LabelWrapper>
+                            <Label>나이</Label>
+                            <StyledInput type="text" name="age" placeholder="Age" value={age} onChange={this.onChange}/>
+                        </LabelWrapper>
+                        <LabelWrapper>
+                            <Label>키</Label>
+                            <StyledInput type="text" name="none" placeholder="Height"/>
+                        </LabelWrapper>
+                        <LabelWrapper>
+                            <Label>몸무게</Label>
+                            <StyledInput type="text" name="none" placeholder="Weight"/>
+                        </LabelWrapper>
+                        <LabelWrapper>
+                            <Label>스리사이즈</Label>
+                            <StyledInput type="text" name="none" placeholder="Three-Size"/>
+                        </LabelWrapper>
+                        <LabelWrapper>
+                            <Label>전화번호</Label>
+                            <StyledInput type="text" name="none" placeholder="Phone-Number"/>
+                        </LabelWrapper>
+                        <LabelWrapper>
+                            <Label>주민등록번호</Label>
+                            <StyledInput type="text" name="none" placeholder="Jumin-Number"/>
                         </LabelWrapper>
                         <StyledButton>가입하기</StyledButton>
                     </SignUpForm>
