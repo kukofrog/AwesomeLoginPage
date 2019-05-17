@@ -4,12 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors'); //cors 설정
+var bodyParser = require('body-parser')
 
 
 var app = express();
 
 app.use(cors()) // api 위에서 사용하겠다고 선언
 //API 설정
+
+app.use(express.json())
 app.use('/api', require('./routes/api'));
 
 // catch 404 and forward to error handler

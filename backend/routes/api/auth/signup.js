@@ -5,16 +5,18 @@ const User = require('../../../models/users')
 
 module.exports = router;
 
-  //Restful
-  router.get('/signup', function(req, res, next) {
-    res.send({ msg: 'hello', a: 3 })
-    User.find()
+
+router.post('/signup', function(req, res, next) {
+  console.log(req.body);
+  const { email, password, name, age } = req.body;
+  const u = new User({ email, password, name, age })
+    u.save()
       .then(r => {
-        res.send({ success : true, users: r})
+        res.send({ success: true, msg: r })
       })
       .catch(e => {
-        res.send({ success : false})
-      })
+        res.send({ success: false, msg: e.message })
+  });
 });
 
 router.post('/', (req, res, next) => {
