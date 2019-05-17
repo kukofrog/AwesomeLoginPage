@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
-import Img1 from 'testimg/img9.gif';
+import god from 'img/god.gif';
 
 const GlobalStyle = createGlobalStyle`
     html, body {
@@ -37,7 +37,7 @@ const IntroSection = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url(${Img1});
+    background-image: url(${god});
     background-repeat: no-repeat;
     background-size: 1920px 1080px;
     display: flex;

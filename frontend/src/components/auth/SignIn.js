@@ -10,7 +10,7 @@ import { faFacebook, faTwitter, faGoogle } from "@fortawesome/free-brands-svg-ic
 const SignInCard = styled.div`
     background-color: white;
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 15rem;
     width: 500px;
     z-index: 2;
     @media (max-width: 550px){
@@ -163,6 +163,7 @@ const H3 = styled.h3`
 `
 
 class SignIn extends React.Component {
+
     render(){
         return(
             <SignInCard>

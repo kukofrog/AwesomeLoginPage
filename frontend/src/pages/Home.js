@@ -11,6 +11,7 @@ class Home extends React.Component{
         return(
             <>
                 형탁이와 함께하는 즐거운 웹프교실
+                <a href="/auth/signin">로그인하기</a>
             </>
         )
     }
