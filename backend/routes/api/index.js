@@ -8,7 +8,7 @@ const User = require('../../models/users')
 
 
 router.use('/user', require('./user'));
-router.use('/auth', require('./auth/signup'));
+router.use('/auth', require('./auth'));
 
 
 router.all('*', function(req, res, next) {

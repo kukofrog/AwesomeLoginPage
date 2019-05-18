@@ -162,6 +162,15 @@ const H3 = styled.h3`
     font-size: 1.5rem;
 `
 
+const Alert = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    background-color: white;
+    box-shadow: 10px 5px 5px black;
+`
+
 class SignIn extends React.Component {
 
     state = {
@@ -188,9 +197,12 @@ class SignIn extends React.Component {
         )
         .then((result) => {
             console.log(result);
+            console.log(result.data.user);
+            console.log(result.data.age);
         })
         .catch((result) => {
             console.log(result);
+            console.log('실패 ㅠ');
         });
     }
 
@@ -200,6 +212,9 @@ class SignIn extends React.Component {
         return(
             <SignInCard>
                 <FormWrapper>
+                    <Alert>
+                        asdf
+                    </Alert>
                     <H1>로그인</H1>
                     <SignInForm onSubmit={this.onSubmit}>
                         <StyledInput type="text" name="email" placeholder="Email" value={email} onChange={this.onChange} />

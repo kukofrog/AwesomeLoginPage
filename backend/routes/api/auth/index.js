@@ -19,22 +19,18 @@ router.post('/signup', function(req, res, next) {
   });
 });
 
-router.post('/', (req, res, next) => {
-
-  const { name, age } = req.body
-  const u = new User({ name, age })
-    u.save()
-      .then(r => {
-        res.send({ success: true, msg: r })
-      })
-      .catch(e => {
-        res.send({ success: false, msg: e.message })
-      })
-
-  // console.log(req.query)
-  // console.log(req.body)
-  // res.send({ success: true, msg: 'post ok' })
-})
+router.post('/signin', function(req, res, next) {
+  console.log(req.body);
+  const { email, password } = req.body;
+  User.findOne({ email: email, password: password }, function(err, user){
+    if(err) return res.status(500).json({error: err});
+    if(!user) return res.status(404).json({error: 'user not found'});
+    res.json({
+      user:user.name,
+      age: user.age
+    });
+  });
+});
 
 router.put('/:id', (req, res, next) => {
   const id = req.params.id

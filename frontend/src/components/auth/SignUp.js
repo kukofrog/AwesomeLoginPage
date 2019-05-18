@@ -196,9 +196,11 @@ class SignUp extends React.Component {
         )
         .then((result) => {
             console.log(result);
+            console.log('성공');
         })
         .catch((result) => {
             console.log(result);
+            console.log('실패');
         });
     }
 
